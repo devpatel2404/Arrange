@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: Georgia;
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  --primary: white;
+  --secondary: black;
+  --links: #4169E1;
+  --button-disabled: lightskyblue;
+  --clicked: #757575;
+  --outline: #d3d3d3;
+  --grey: #757575;
+
+  input {
+    font-family: Arial;
+  }
+}
+
+.Background1 {
+  background: var(--primary);
+}
+.Background2 {
+  background: var(--secondary);
+}
+.Background3 {
+  background: var(--grey);
+}
+
+.Foreground1 {
+  color: var(--secondary);
+}
+.Foreground2 {
+  color: var(--primary);
+}
+
+.Links {
+  color: var(--links);
+}
+
+.HCenter {
+  margin-left: auto;
+  margin-right: auto;
+}
+.VCenter {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.Center {
+  margin: auto;
+}
+.Left {
+  margin-right: auto;
+}
+.Right {
+  margin-left: auto;
+}
+.TCenter {
+  Text-align: center;
+}

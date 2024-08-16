@@ -1,0 +1,122 @@
+.Section {
+  padding: 16px 0;
+}
+h1 {
+  font-size: 20px;
+}
+p {
+  font-size: 16px;
+}
+.Rounded {
+  border-radius: 30px;
+}
+
+.BannerContainer {
+  display: flex;
+}
+.BannerText {
+  width: 300px;
+}
+
+.FeatureContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.TopPage {
+  width: 100vw;
+  height: 60px;
+  display: flex;
+}
+
+.Title{
+  font-weight: normal;
+  font-family: "Brush Script MT";
+  font-size: 48px;
+}
+
+.Button {
+  width: 80px;
+  height: 30px;
+  margin: 15px 20px 0 auto;
+  border: 2px solid #d3d3d3;
+  border-radius: 30px;
+}
+
+.button {
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+.TopText {
+  text-align: center;
+  font-size: 18px;
+}
+
+.Button1 {
+  width: 80px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px auto 0 auto;
+  border-radius: 30px;
+}
+
+@media (max-width: 699px) {
+  h1 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .Text {
+    width: 300px;
+  }
+  .LargeImage {
+    width: 300px;
+    margin: 12px auto;
+  }
+  .XSmallImage {
+    width: 80px;
+    border-radius: 10px;
+  }
+  .XSDescription {
+    width: 80px;
+    font-size: 12px;
+  }
+  .FeatureContainer {
+    width: 360px;
+  }
+  .BannerContainer {
+    display: initial;
+  }
+  .BannerText {
+    width: 300px;
+    margin-top: 8px;
+  }
+
+}
+
+@media (max-width: 999px) and (min-width: 700px) {
+  h1 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .LargeImage {
+    width: 400px;
+    margin: 12px auto;
+  }
+  .BannerText {
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .BannerDescription {
+    font-size: 16px;
+  }
+  .BannerTitle {
+    font-weight: normal;
+  }
+}

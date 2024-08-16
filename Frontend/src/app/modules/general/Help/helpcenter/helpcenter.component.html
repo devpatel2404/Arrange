@@ -1,0 +1,84 @@
+<main [ngClass]="{ 'active': isActive }">
+  <div class="TopPage text-black z-50">
+    <h1><a routerLink="/" class="Logo">Arrange</a></h1>
+    <h1 class="Title"><a routerLink="/help-center" class="Title" (click)="toggleMenu()">Help Center</a></h1>
+    <div class="End">
+      <div class="SearchBar">
+        <form></form>
+      </div>
+      <div class="MenuBar">
+        <button class="container" [ngClass]="{ 'active': isActive }" type="submit" (click)="toggleMenu()">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="">
+    <div class="Navigation">
+      <a routerLink="/help-center/features" (click)="toggleMenu()">
+        <button class="LinkContainer">
+          <h1>Arrange Features</h1>
+        </button>
+      </a>
+      <a routerLink="/help-center/about" (click)="toggleMenu()">
+        <button class="LinkContainer">
+          <h1>About</h1>
+        </button>
+      </a>
+      <a routerLink="/help-center/cookies-policy" (click)="toggleMenu()">
+        <button class="LinkContainer">
+          <h1>Cookies</h1>
+        </button>
+      </a>
+      <a routerLink="/help-center/manage-account" (click)="toggleMenu()">
+        <button class="LinkContainer">
+          <h1>Manage Your Account</h1>
+        </button>
+      </a>
+      <a routerLink="/help-center/privacy-policy" (click)="toggleMenu()">
+        <button class="LinkContainer">
+          <h1>Privacy</h1>
+        </button>
+      </a>
+      <a routerLink="/help-center/support" (click)="toggleMenu()">
+        <button class="LinkContainer">
+          <h1>Support</h1>
+        </button>
+      </a>
+      <a routerLink="/help-center/terms" (click)="toggleMenu()">
+        <button class="LinkContainer">
+          <h1>Terms</h1>
+        </button>
+      </a>
+    </div>
+      <div class="Content">
+        <ng-container *ngIf="isCorrectRoute()" class="">
+          <div class="DefaultContainer">
+            <h1 class="DefaultTitle">How can we help you?</h1>
+            <div class="MostSearched">
+              <h1 class="mt-3">Featured topics</h1>
+              <h1 class="Links"><a routerLink="/help-center/terms">Terms</a></h1>
+              <h1 class="Links"><a routerLink="/help-center/privacy-policy">Privacy</a></h1>
+              <h1 class="Links"><a routerLink="/help-center/support">Support</a></h1>
+              <h1 class="Links"><a routerLink="/help-center/manage-account">Manage Your Account</a></h1>
+            </div>
+          </div>
+        </ng-container>
+        <router-outlet />
+      </div>
+        <div class="Footer">
+          <h1 class="Links"><a routerLink="/help-center/terms">Manage Your Account</a></h1>
+          <h1 class="Links"><a routerLink="/help-center/privacy-policy">Privacy</a></h1>
+          <h1 class="Links"><a routerLink="/help-center/support">Support</a></h1>
+          <h1 class="Links"><a routerLink="/help-center/terms">Terms</a></h1>
+          <div class="Divider"></div>
+          <div class="flex justify-between">
+            <h1 class="mt-2 ml-2 inline">from <a routerLink="" class="SmallLogo">Arrange</a></h1>
+            <h1 class="mt-2 text-lg text-end mr-4">&copy; 2024 Arrange</h1>
+          </div>
+        </div>
+    </div>
+</main>
+

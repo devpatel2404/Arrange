@@ -1,0 +1,195 @@
+.TopPage {
+  height: 60px;
+  width: 100vw;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-content: center;
+  position: fixed;
+  background: white;
+}
+
+.Navigation {
+  height: 100vh;
+  border-right: 1px solid black;
+  margin-top: 61px;
+  width: 300px;
+  position: fixed;
+}
+
+.Title {
+  margin: auto 12px;
+  font-size: 18px;
+}
+
+.Title:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: #d3d3d3;
+}
+
+.End {
+  margin: auto 12px auto auto;
+}
+
+.Logo {
+  font-weight: normal;
+  font-family: "Brush Script MT", serif;
+  font-size: 40px;
+  display: flex;
+  margin: 5px 0 auto 12px;
+}
+
+
+.LinkContainer {
+  width: 290px;
+  border-radius: 0.5rem;
+  font-size: 16px;
+  padding: 12px 15px;
+  margin: 0 5px;
+}
+
+button:hover {
+  background-color: #EEEEEE;
+}
+
+.container {
+  display: inline-block;
+  cursor: pointer;
+  width: 36px;
+  border-radius: 40px;
+  margin-right: 8px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.bar1, .bar2, .bar3 {
+  height: 2px;
+  width: 20px;
+  background-color: #333;
+  margin: 5px auto;
+  transition: 0.2s;
+}
+
+.container.active .bar1 {
+  transform: translate(0, 7px) rotate(-45deg);
+}
+.container.active .bar2 {opacity: 0;}
+
+.container.active .bar3 {
+  transform: translate(0, -7px) rotate(45deg);
+}
+
+.container.active ~ .Title {
+  background-color: #4169E1;
+}
+
+.DefaultTitle {
+  padding-top: 18px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.Links {
+  margin-top: 12px;
+  color: #4169E1;
+}
+
+.Content {
+  min-height: calc(100vh - 125px - 60px);
+}
+
+.Footer {
+  padding: 6px 0 12px 0;
+  font-family: "Roboto Thin";
+  background: #f8f8f8;
+}
+
+.Footer h1 {
+  color: #757575;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.Divider {
+  border-top: 1px #d3d3d3 solid;
+  margin: 18px auto 0 auto;
+}
+
+.DefaultContainer {
+  padding-bottom: calc(100vh - 61px - 400px);
+}
+
+.SmallLogo {
+  font-size: 22px;
+  margin-left: 4px;
+  font-family: "Brush Script MT", serif;
+}
+
+@media (min-width: 800px) and (max-width: 999px) {
+  .Content {
+    display: inline-block;
+    margin-left: 320px;
+    margin-top: 61px;
+    z-index: 0;
+    width: calc(100vw - 340px);
+  }
+}
+
+@media (min-width: 1000px) {
+  .Content {
+    padding-top: 61px;
+    width: 700px;
+    margin-left: calc(300px + (100vw - 1000px)/2);
+  }
+}
+
+@media (max-width: 799px) {
+  .Navigation {
+    display: none;
+    width: 100vw;
+  }
+  .LinkContainer {
+    width: 90vw;
+    margin: 0 5vw;
+  }
+  .MenuBar {
+    display: initial;
+  }
+  main.active .Content, main.active .Footer {
+    display: none;
+  }
+  main.active .Navigation{
+    display: initial;
+  }
+
+  .MostSearched h1 {
+    font-size: 20px;
+  }
+  .MostSearched a {
+    font-size: 18px;
+  }
+  .MostSearched {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .Content {
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-top: 61px;
+  }
+}
+
+@media (min-width: 800px) {
+  .MenuBar {
+    display: none;
+  }
+  .Footer {
+    width: calc(100vw - 300px);
+    margin-left: 300px;
+  }
+}
+
+.MenuBar:active {
+  transition: ease-in-out 1s;
+}

@@ -1,0 +1,28 @@
+<main>
+  <div class="SignupContainer">
+    <h1><a routerLink="/" class="Title">Arrange</a></h1>
+    <ng-form [formGroup]="form" (keydown.enter)="onSubmit()">
+      <input class="bg-gray-50" type="email" placeholder="Email" formControlName="email" [required]="true"/>
+      <input class="bg-gray-50" type="text" placeholder="Full Name" formControlName="name" [required]="true"/>
+      <input class="bg-gray-50" type="text" placeholder="Username" formControlName="username" [required]="true"/>
+      <div class="password-container">
+        <input class="bg-gray-50" [type]="visible ? 'text' : 'password'" formControlName="password" placeholder="Password" [required]="true">
+        <button type="button" class="password-toggle-button" (click)="toggleVisible()" *ngIf="password?.getRawValue().length > 0">
+          {{ visible ? 'Hide' : 'Show' }}
+        </button>
+      </div>
+      <p>By signing up you agree to our <a routerLink="/help-center/terms" class="Terms">
+        Terms</a>, <a routerLink="/help-center/privacy-policy" class="Privacy">Privacy Policy</a>,
+        and <a routerLink="/" class="Cookies">Cookies Policy</a></p>
+      <button (click)="onSubmit()" type="submit"
+              [disabled]="email?.errors || username?.errors || name?.errors || password?.errors || password?.value.length < 8
+              || password?.value.length > 30 || email?.value.length < 10 || email?.value.length > 320 || username?.value.length < 8
+               || username?.value.length > 20">Sign up</button>
+    </ng-form>
+  </div>
+  <div class="HaveAccount">
+    <h1>Have an account? <a routerLink="/login" class="LoginLink">Log in</a></h1>
+  </div>
+  <app-footer class="Footer relative" />
+</main>
+<router-outlet/>
