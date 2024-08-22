@@ -1,21 +1,22 @@
 <main class="">
+
   <div class="LoginContainer">
-    <div *ngIf="errorMessage">
-      <p>{{ errorMessage }}</p>
-    </div>
     <h1><a routerLink="/" class="ml-4 Title">Arrange</a></h1>
-    <ng-form (ngSubmit)="onSubmit()" [formGroup]="loginForm" (keydown.enter)= "onSubmit()">
-      <input class="Input bg-gray-50" placeholder="Username or Email" formControlName="emailOrUsername" [required]="true"/>
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+      <input id="usernameOrEmail" class="Input bg-gray-50" placeholder="Username or Email" formControlName="emailOrUsername" [required]="true"/>
       <div class="password-container">
-        <input class="bg-gray-50" [type]="visible ? 'text' : 'password'" formControlName="password" placeholder="Password" [required]="true">
+        <input id="password" class="bg-gray-50" [type]="visible ? 'text' : 'password'" formControlName="password" placeholder="Password" [required]="true">
         <button type="button" class="password-toggle-button" (click)="toggleVisibility()" *ngIf="password?.getRawValue().length > 0">
           {{ visible ? 'Hide' : 'Show' }}
         </button>
       </div>
-      <button class="LoginButton Foreground2" type="submit"  (click)="onSubmit()" [disabled]=" password?.errors || emailOrUsername?.errors ||
+      <button class="LoginButton Foreground2" type="submit" (click)="onSubmit()" [disabled]=" password?.errors || emailOrUsername?.errors ||
       password?.value.length < 8 || password?.value.length > 30 || emailOrUsername?.value.length < 8 || emailOrUsername?.value.length > 40">
         Log in</button>
-    </ng-form>
+    </form>
+    <div class="Error Center TCenter" *ngIf="errorMessage">
+      <p>Login Error: Check Login Credentials</p>
+    </div>
     <a routerLink="/forgot-password" class="ForgotPassword Links">Forgot password?</a>
   </div>
   <div class="SignupContainer">

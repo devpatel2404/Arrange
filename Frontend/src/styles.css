@@ -14,7 +14,8 @@
   --clicked: #757575;
   --outline: #d3d3d3;
   --grey: #757575;
-
+  --light-red: indianred;
+  --dark-red: darkred;
   input {
     font-family: Arial;
   }
@@ -35,6 +36,10 @@
 }
 .Foreground2 {
   color: var(--primary);
+}
+
+.Error {
+  color: red;
 }
 
 .Links {

@@ -1,0 +1,15 @@
+* {
+  font-family: Roboto;
+}
+h1 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 16px;
+}
+
+.Profile-Button {
+  display: flex;
+  margin: 12px 12px 0 auto;
+}

@@ -1,0 +1,55 @@
+<main class="">
+  <div class="Navbar Background2">
+    <div class="Links">
+      <a routerLink="/authHome" class="VCenter">
+        <h1 class="AppName Foreground2">Arrange</h1>
+      </a>
+      <a routerLink="/authHome" class="VCenter" *ngIf="isHome()">
+        <h1 class="Foreground2 Link VCenter">Schedule</h1>
+      </a>
+      <a routerLink="/authHome" class="VCenter" *ngIf="isHome()">
+        <h1 class="Foreground2 Link VCenter">Goals</h1>
+      </a>
+      <a routerLink="/authHome" class="VCenter">
+        <h1 class="Foreground2 Link VCenter">Chat With AI</h1>
+      </a>
+      <a routerLink="/authHome" class="VCenter">
+        <h1 class="Foreground2 Link VCenter">Journal</h1>
+      </a>
+      <a routerLink="/authHome" class="VCenter">
+        <h1 class="Foreground2 Link VCenter">Communities</h1>
+      </a>
+    </div>
+    <div class="VCenter Right Profile-Image-Container">
+      <button (click)="toggleProfile()">
+        <img ngSrc="/assets/auth/Placeholder-Profile.jpeg" width="65" height="65" class="Profile-Image VCenter"/>
+      </button>
+    </div>
+    <div class="SubLinks">
+
+    </div>
+  </div>
+  <div class="Pr-Drop-Down z-50">
+    <div class="flex">
+      <h1 class="TCenter HCenter">{{userService.getUsername()}}</h1>
+      <div class="close">
+        <button class="container" type="submit" (click)="toggleProfile()">
+          <div class="bar1"></div>
+          <div class="bar3"></div>
+        </button>
+      </div>
+    </div>
+    <img ngSrc="/assets/auth/Placeholder-Profile.jpeg" width="150" height="150" class="Profile-Image Profile-2 HCenter" priority>
+    <div class="Options HCenter">
+      <button class="HCenter"><a [routerLink]="['/profile/', userService.getUsername()]">View Your Profile</a></button>
+      <button class="HCenter Profile-Links"><a routerLink="/settings">Account Settings</a></button>
+      <button class="HCenter Profile-Links"><a routerLink="/settings">Friends</a></button>
+      <button class="HCenter Profile-Links"><a routerLink="/settings">Messages</a></button>
+      <button class="HCenter Profile-Links"><a routerLink="/settings">Groups</a></button>
+      <button class="SignOutButton HCenter" (click)="logOut()">Sign Out</button>
+    </div>
+    <h1 class="PolicyLinks TCenter">
+      <a routerLink="/help-center/terms">Terms of Service</a> &#183; <a routerLink="/help-center/privacy-policy">Privacy Policy</a>
+    </h1>
+  </div>
+</main>

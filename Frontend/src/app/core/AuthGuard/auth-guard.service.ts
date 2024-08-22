@@ -1,11 +1,6 @@
-import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  GuardResult,
-  MaybeAsync,
-  Router,
-} from "@angular/router";
-import {AccountService} from "../accountService/account.service";
+import {Injectable} from '@angular/core';
+import {CanActivate, MaybeAsync, Router,} from "@angular/router";
+import {AccountService} from "../Services/AccountService/account.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +10,7 @@ export class AuthGuardService implements CanActivate{
   constructor(private accService: AccountService, private router: Router) { }
 
   canActivate(): MaybeAsync<boolean> {
-    if (!document.cookie) {
+    if (!this.accService.isLoggedIn()) {
       return this.redirectToLogin();
     }
     return true;

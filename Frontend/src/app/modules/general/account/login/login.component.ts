@@ -1,12 +1,9 @@
-import { Component } from '@angular/core';
-import {Router} from "@angular/router";
-import {RouterLink, RouterOutlet} from "@angular/router";
-import {FooterComponent} from "../../footer/footer.component";
+import {Component} from '@angular/core';
+import {Router, RouterLink, RouterOutlet} from "@angular/router";
+import {FooterComponent} from "../../../../layouts/footer/footer.component";
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {AccountService} from "../../../../core/accountService/account.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import {AccountService} from "../../../../core/Services/AccountService/account.service";
 import {NgIf} from "@angular/common";
-import {data} from "autoprefixer";
 
 @Component({
   selector: 'app-login',
@@ -31,20 +28,13 @@ export class LoginComponent {
       password: ['', new FormControl([Validators.required, Validators.maxLength(30), Validators.minLength(8)])]
     })
   }
-  errorMessage: string | null = null;
+  errorMessage: boolean = false;
 
   onSubmit() {
     if (this.loginForm.valid) {
       this.accountService.login(this.loginForm.value).subscribe({
-        next: (response) => {
-          //show success and redirect when the info is collected
-          this.accountService.setToken(response.token);
-          this.router.navigate(['/authHome']);
-        },
-        error: (err) => {
-          //show error message
-          this.errorMessage = 'Login failed. Please try again.';
-        }
+        next: (response) => {this.router.navigate(['/authHome']); },
+        error: (err) => { console.log(err) }
       });
     }
   }
@@ -57,17 +47,7 @@ export class LoginComponent {
     return this.loginForm.get('emailOrUsername')
   }
 
-  checkError() {
-    const control = this.loginForm.controls;
-    for (let key in control) {
-      if (control[key].errors){
-        console.log(control[key].errors)
-      }
-    }
-  }
-
   toggleVisibility() : void {
-    console.error(this.loginForm.getRawValue());
     this.visible = ! this.visible;
   }
 }

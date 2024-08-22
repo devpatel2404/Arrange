@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
-import {FooterComponent} from "../../footer/footer.component";
+import {FooterComponent} from "../../../../layouts/footer/footer.component";
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {HttpErrorResponse} from "@angular/common/http";
-import {AccountService} from "../../../../core/accountService/account.service";
+import {AccountService} from "../../../../core/Services/AccountService/account.service";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -34,7 +33,6 @@ export class SignupComponent {
 
   onSubmit(){
     if (this.form.valid) {
-      console.log(this.form.value);
       this.accountService.signup(this.form.value).subscribe({
         next: (response) => {
           //show success and delaya few seconds

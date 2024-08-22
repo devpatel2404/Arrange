@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FooterComponent} from "../footer/footer.component";
+import {FooterComponent} from "../../../layouts/footer/footer.component";
 import {NgOptimizedImage} from "@angular/common";
 import {RouterLink, RouterOutlet} from "@angular/router";
 
