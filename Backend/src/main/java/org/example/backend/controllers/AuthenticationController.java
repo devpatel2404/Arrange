@@ -14,35 +14,19 @@ import java.util.*;
 @RestController
 @CrossOrigin("http://localhost:4200")
 @RequestMapping("/auth")
-public class UserController {
+public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private JwtService jwtService;
+    @Autowired
+    private UserService userService;
+    LoggerService loggerService = new LoggerService();
 
     @GetMapping("/userInfo")
     public ResponseEntity<UserInsensitiveDTO> getUserInfo(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        Optional<Cookie> tokenCookieOpt = Arrays.stream(cookies)
-                .filter(cookie -> "token".equals(cookie.getName()))
-                .findFirst();
-
-        if (tokenCookieOpt.isPresent()) {
-            Cookie tokenCookie = tokenCookieOpt.get();
-            String token = tokenCookie.getValue();
-
-            if (jwtService.isTokenValid(token, userRepository.findByUsername(jwtService.extractUsername(token)))) {
-                User user = userRepository.findByUsername(jwtService.extractUsername(token));
-                if (user != null) {
-                    UserInsensitiveDTO userDTO = new UserInsensitiveDTO(
-                            user.getName(),
-                            user.getEmail(),
-                            user.getUsername()
-                    );
-                    return new ResponseEntity<>(userDTO, HttpStatus.OK);
-                }
-            }
-        }
-        return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        UserInsensitiveDTO dto = userService.copyUserToDTO(userService.extractUser(request.getCookies()));
+        if (dto != null) return new ResponseEntity<>(dto, HttpStatus.OK);
+        else return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 }

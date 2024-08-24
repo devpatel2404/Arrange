@@ -1,9 +1,11 @@
 package org.example.backend.services;
 
+import jakarta.servlet.http.*;
 import org.example.backend.models.*;
 import org.example.backend.models.DTO.*;
 import org.example.backend.repositories.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.*;
 import java.util.*;
@@ -15,9 +17,9 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
-    BCryptPasswordEncoder encoder;
+    private BCryptPasswordEncoder encoder;
     @Autowired
-    JwtService jwtService;
+    private JwtService jwtService;
 
     public String encodePassword(String rawPassword) {
         return encoder.encode(rawPassword);
@@ -31,8 +33,12 @@ public class UserService {
         return jwtService.generateToken(userRepository.findByUsername(user.getUsername()));
     }
 
+    public User containsUser(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     public User registerUser(UserRegisterDTO userDTO) {
-        if (userRepository.findByUsername(userDTO.getUsername()) != null){
+        if (containsUser(userDTO.getUsername()) != null){
             throw new IllegalArgumentException("Username already exists");
         }
         else if (userRepository.findByEmail(userDTO.getEmail()) != null) {
@@ -64,5 +70,38 @@ public class UserService {
             return userRepository.findByUsername(userLogin.getEmailOrUsername());
         }
         throw new IllegalArgumentException("User cannot be logged in");
+    }
+
+    public ResponseCookie makeCookie(String token) {
+        ResponseCookie responseCookie = ResponseCookie
+                .from("token", token)
+                .secure(true)
+                .httpOnly(true)
+                .path("/")
+                .maxAge(60 * 60 * 24)
+                .sameSite("None")
+                .build();
+        return responseCookie;
+    }
+
+    public User extractUser(Cookie[] cookies){
+        Optional<Cookie> tokenCookieOpt = Arrays.stream(cookies)
+                .filter(cookie -> "token".equals(cookie.getName()))
+                .findFirst();
+
+        if (tokenCookieOpt.isPresent()) {
+            Cookie tokenCookie = tokenCookieOpt.get();
+            String token = tokenCookie.getValue();
+
+            if (jwtService.isTokenValid(token, userRepository.findByUsername(jwtService.extractUsername(token)))) {
+                User user = userRepository.findByUsername(jwtService.extractUsername(token));
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public UserInsensitiveDTO copyUserToDTO(User user) {
+        return new UserInsensitiveDTO(user.getName(), user.getEmail(), user.getUsername());
     }
 }

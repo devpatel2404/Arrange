@@ -3,11 +3,12 @@ package org.example.backend.models;
 import jakarta.persistence.*;
 import jakarta.persistence.Column;
 import lombok.*;
-import org.springframework.boot.*;
 import org.springframework.security.core.*;
+import org.springframework.security.core.authority.*;
 import org.springframework.security.core.userdetails.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 
 @NoArgsConstructor
@@ -28,6 +29,8 @@ public class User implements UserDetails {
     private String password;
     private Date createdAt;
     private Date lastActivity;
+    private String address;
+    private String Bio;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -39,7 +42,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return this.roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority())).collect(Collectors.toList());
     }
 
     @Override

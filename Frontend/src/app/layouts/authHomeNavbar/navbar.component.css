@@ -30,8 +30,8 @@
 }
 
 .Profile-2 {
-  margin-top: -30px;
-  margin-bottom: -25px;
+  margin-top: -20px;
+  margin-bottom: -19px;
 }
 
 .Pr-Drop-Down {
@@ -47,30 +47,22 @@
   color: #aaaaaa;
 }
 
-.container {
-  margin: -7px 0 -7px -34px;
-  width: 34px;
-  height: 34px;
+.Pr-Username {
+  z-index: 999;
+}
+
+.close-button {
+  position: absolute;
+  margin-top: -30px;
+  right: 10px;
+  color: #999;
+  cursor: pointer;
+  font-size: 30px;
   border-radius: 100px;
 }
 
-.bar1, .bar3 {
-  height: 2px;
-  width: 20px;
-  background-color: #aaaaaa;
-  margin: 5px auto;
-  transition: 0.2s;
-}
-
-.container .bar1 {
-  transform: translate(0, calc(7px/2)) rotate(-45deg);
-}
-.container .bar3 {
-  transform: translate(0, calc(-7px/2)) rotate(45deg);
-}
-
-.container:hover {
-  background: #505050;
+.close-button:hover {
+  color: #d3d3d3;
 }
 
 .SignOutButton {
@@ -83,6 +75,10 @@
   justify-content: center;
 }
 
+.Profile-Image:hover {
+  cursor: pointer;
+}
+
 .Options {
   width: 200px;
   display: flex;
@@ -92,7 +88,81 @@
 .PolicyLinks {
   margin-top: 12px;
   font-size: 14px;
+}
 
+.Profile-Image-Container {
+  position: relative;
+}
+
+.Edit-Image {
+  position: absolute;
+  top: 90px;
+  right: 105px;
+  width: 30px;
+  object-fit: cover;
+  clip-path: circle(45%);
+  z-index: 999;
+}
+
+.Edit-Image:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.Profile-Links {
+  margin-top: 4px;
+  z-index: 999;
+}
+
+.Profile-Links:hover {
+  cursor: pointer;
+}
+
+.container {
+  display: inline-block;
+  cursor: pointer;
+  width: 20px;
+  border-radius: 40px;
+  margin-right: 8px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.bar1, .bar2, .bar3 {
+  height: 2px;
+  width: 20px;
+  background-color: #AAA;
+  margin: 5px auto;
+  transition: 0.2s;
+}
+
+.container.active .bar1 {
+  transform: translate(0, 7px) rotate(-45deg);
+}
+.container.active .bar2 {opacity: 0;}
+
+.container.active .bar3 {
+  transform: translate(0, -7px) rotate(45deg);
+}
+
+.container.active ~ .Title {
+  background-color: #4169E1;
+}
+
+.MenuBar {
+  display: none;
+  margin-right: 10px;
+}
+
+.Menu {
+  position: absolute;
+  top: 60px;
+  z-index: 999;
+  width: 100vw;
+  height: calc(100vh - 60px);
+  padding: 20px;
+  background: #333333;
+  color: #aaaaaa;
 }
 
 @media (max-width: 599px) {
@@ -102,9 +172,26 @@
 
   .Pr-Drop-Down {
     width: 100vw;
-    height: calc(100vh - 75px);
+    height: calc(100vh - 60px);
     margin: 0;
     border-radius: 0;
-    top: 75px;
+    top: 60px;
+  }
+
+  .Pr-Username {
+    padding-left: 30px;
+  }
+
+  .Edit-Image {
+    position: initial;
+    margin: -60px 0px 8px calc(50vw);
+  }
+
+  .MenuBar {
+    display: initial;
+  }
+  .Menu h1 {
+    margin-top: 6px;
+    font-size: 18px;
   }
 }

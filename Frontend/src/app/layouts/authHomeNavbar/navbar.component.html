@@ -4,10 +4,10 @@
       <a routerLink="/authHome" class="VCenter">
         <h1 class="AppName Foreground2">Arrange</h1>
       </a>
-      <a routerLink="/authHome" class="VCenter" *ngIf="isHome()">
+      <a routerLink="/authHome" class="VCenter">
         <h1 class="Foreground2 Link VCenter">Schedule</h1>
       </a>
-      <a routerLink="/authHome" class="VCenter" *ngIf="isHome()">
+      <a routerLink="/authHome" class="VCenter">
         <h1 class="Foreground2 Link VCenter">Goals</h1>
       </a>
       <a routerLink="/authHome" class="VCenter">
@@ -25,23 +25,29 @@
         <img ngSrc="/assets/auth/Placeholder-Profile.jpeg" width="65" height="65" class="Profile-Image VCenter"/>
       </button>
     </div>
-    <div class="SubLinks">
-
+    <div class="MenuBar VCenter">
+      <button class="container" [ngClass]="{ 'active': (isActive) }" type="submit" (click)="toggleMenu()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </button>
     </div>
   </div>
-  <div class="Pr-Drop-Down z-50">
-    <div class="flex">
-      <h1 class="TCenter HCenter">{{userService.getUsername()}}</h1>
+  <div class="Pr-Drop-Down z-50" *ngIf="profileDropDown">
+  <div class="flex">
+      <h1 class="TCenter HCenter Pr-Username">{{userService.getUsername()}}</h1>
       <div class="close">
         <button class="container" type="submit" (click)="toggleProfile()">
-          <div class="bar1"></div>
-          <div class="bar3"></div>
+          <div class="close-button">×</div>
         </button>
       </div>
     </div>
-    <img ngSrc="/assets/auth/Placeholder-Profile.jpeg" width="150" height="150" class="Profile-Image Profile-2 HCenter" priority>
+    <div class="Profile-Image-Container">
+      <img ngSrc="/assets/auth/Placeholder-Profile.jpeg" width="150" height="150" class="Profile-Image Profile-2 HCenter"
+           [routerLink]="['/profile/', userService.getUsername()]" priority>
+      <img ngSrc="/assets/auth/Edit-Image.png" width="40" height="40" class="Edit-Image HCenter" routerLink="/settings">
+    </div>
     <div class="Options HCenter">
-      <button class="HCenter"><a [routerLink]="['/profile/', userService.getUsername()]">View Your Profile</a></button>
       <button class="HCenter Profile-Links"><a routerLink="/settings">Account Settings</a></button>
       <button class="HCenter Profile-Links"><a routerLink="/settings">Friends</a></button>
       <button class="HCenter Profile-Links"><a routerLink="/settings">Messages</a></button>
@@ -51,5 +57,22 @@
     <h1 class="PolicyLinks TCenter">
       <a routerLink="/help-center/terms">Terms of Service</a> &#183; <a routerLink="/help-center/privacy-policy">Privacy Policy</a>
     </h1>
+  </div>
+  <div class="Menu" *ngIf="isActive">
+    <a routerLink="/authHome" class="TCenter">
+      <h1 class="Foreground2">Schedule</h1>
+    </a>
+    <a routerLink="/authHome" class="TCenter">
+      <h1 class="Foreground2">Goals</h1>
+    </a>
+    <a routerLink="/authHome" class="TCenter">
+      <h1 class="Foreground2">Chat With AI</h1>
+    </a>
+    <a routerLink="/authHome" class="TCenter">
+      <h1 class="Foreground2">Journal</h1>
+    </a>
+    <a routerLink="/authHome" class="TCenter">
+      <h1 class="Foreground2">Communities</h1>
+    </a>
   </div>
 </main>

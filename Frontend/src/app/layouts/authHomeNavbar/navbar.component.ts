@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {UserService} from "../../core/Services/UserService/user.service";
 import {AccountService} from "../../core/Services/AccountService/account.service";
@@ -10,13 +10,15 @@ import {AccountService} from "../../core/Services/AccountService/account.service
   imports: [
     NgOptimizedImage,
     RouterLink,
-    NgIf
+    NgIf,
+    NgClass
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit{
   profileDropDown : boolean = false;
+  isActive : boolean = false;
 
   constructor(protected userService : UserService, private accountService : AccountService, private router : Router) {}
 
@@ -26,6 +28,10 @@ export class NavbarComponent implements OnInit{
 
   toggleProfile() {
     this.profileDropDown = !this.profileDropDown;
+  }
+
+  toggleMenu() {
+    this.isActive = !this.isActive;
   }
 
   isHome() {

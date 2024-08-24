@@ -57,4 +57,12 @@ public class LoginController {
             return ResponseEntity.ok("{\"token\": \"" + "Email sent" + "\"}");
         }
     }
+
+    @PutMapping("/changePassword")
+    public ResponseEntity<String> changePassword(@RequestBody UserLoginDTO user) {
+        //implement check for if change is valid;
+        User a = userService.loginUser(user);
+        a.setPassword(user.getPassword());
+        return ResponseEntity.ok("Password successfully changed");
+    }
 }
